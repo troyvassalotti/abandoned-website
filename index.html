@@ -10,17 +10,21 @@
     <style>
       /* Photo by Echo Grid on Unsplash */
       html {
-        display: grid;
-        palce-items: center;
         background: url("/echo-grid-abandoned.jpg") center / cover no-repeat black;
         width: 100%;
         min-height: 100vh;
         font: normal normal normal calc(14px + (26 - 14) * ((100vw - 320px) / (1920 - 320)))/1.5 Verdana, sans-serif;
       }
 
+      body {
+        display: grid;
+        palce-items: center;
+      }
+
       main {
-        width: 80%;
+        width: max-content;
         padding: 2em;
+        background: white;
       }
     </style>
 
@@ -30,6 +34,12 @@
     <main>
       <h1>Coming Soon</h1>
       <p>What if abandoned websites <em>actually looked</em> abandoned?</p>
+      <p>In the meantime, check out my other sites:</p>
+      <ul>
+        <li><a href="https://troyv.dev/">troyv.dev - my personal site</a></li>
+        <li><a href="https://frontroyalmusic.netlify.app">Front Royal (the band, not the town).</a></li>
+        <li><a href="https://pang.netlify.app">Pang, a new type of social media.</a></li>
+      </ul>
     </main>
   </body>
 
