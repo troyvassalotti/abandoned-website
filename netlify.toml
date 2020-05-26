@@ -11,3 +11,23 @@
   pretty_urls = true
 [build.processing.images]
   compress = true
+
+# Redirect from the default Netlify site to my custom domain
+[[redirects]]
+  from = "https://abandoned-website.netlify.app/*"
+  to = "https://abandoned.website/:splat"
+  status = 301
+  force = true
+
+# Custom headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    X-XSS-Protection = "1"
+    Content-Security-Policy = "default-src 'self' https://d33wubrfki0l68.cloudfront.net 'unsafe-inline'"
+
+# Plugins
+[[plugins]]
+package = "@netlify/plugin-sitemap"
