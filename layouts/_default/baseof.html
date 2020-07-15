@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {{ $description := .Params.description }}
     <meta name="description" content="{{ $description }}">
-    {{- $options := (dict "targetPath" "style.css" "outputStyle" "compressed") -}}
-    {{- $style := resources.Get "sass/main.scss" | resources.ToCSS $options -}}
+    {{ $options := (dict "targetPath" "style.css" "outputStyle" "compressed") }}
+    {{ $style := resources.Get "sass/main.scss" | resources.ToCSS $options }}
     <link rel="stylesheet" href="{{ $style.Permalink }}">
     <title>{{ block "title" . }}{{ .Site.Title }}{{ end }}</title>
     {{ template "_internal/opengraph.html" . }}

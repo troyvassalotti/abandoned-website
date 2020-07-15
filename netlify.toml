@@ -1,17 +1,17 @@
 # Build the site please
 [build]
-  command = "hugo"
+  command = "hugo --gc --minify"
   publish = "public"
 
 # Assign all the post-processing
 [build.processing]
   skip_processing = false
 [build.processing.css]
-  bundle = true
-  minify = true
+  bundle = false
+  minify = false
 [build.processing.js]
-  bundle = true
-  minify = true
+  bundle = false
+  minify = false
 [build.processing.html]
   pretty_urls = true
 [build.processing.images]
