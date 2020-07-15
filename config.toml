@@ -2,6 +2,5 @@ baseURL = "https://abandoned.website/"
 languageCode = "en-us"
 title = "Abandoned Website"
 [params]
-  copyrighthtml = "Copyright &#xA9; 2017 John Doe. All Rights Reserved."
-  sidebarrecentlimit = 5
-  twitteruser = "spf13"
+  description = "What if long-forgotten websites actually appeared abandoned?"
+  title = "Abandoned.Website | Long-Forgotten, But Always Loved"
