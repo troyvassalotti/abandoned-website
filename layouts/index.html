@@ -1,11 +1,52 @@
 {{ define "main" }}
 <main>
-	<h1>{{ .Title }}</h1>
-	{{ with .Params.subtitle }}
-	<p>{{ . }}</p>
-	{{ end }}
-	<article>
-		{{ .Content }}
-	</article>
+
+	<header>
+		<h1>{{ .Title }}</h1>
+		{{ with .Params.subtitle }}
+		<p>{{ . }}</p>
+		{{ end }}
+		<a class="btn" href="/services/">Our Services</a>
+	</header>
+
+	<section>
+		<h2>Latest News</h2>
+		<div>
+			{{ range last 3 .Pages }}
+			<article>
+				<h3>{{ .Title }}</h3>
+				<p>{{ .Summary }}</p>
+				<a href="{{ .Permalink }}">Read more...</a>
+			</article>
+			{{ end }}
+		</div>
+	</section>
+
+	<section>
+		<h2>Who We Are</h2>
+		<p>We are a team of elite marketing professionals with over 100 years of breakthrough technological expertise.</p>
+		<div>
+			<figure>
+				<img src="/img/broken-img.gif" alt="">
+				<figcaption>Action Hamilton, CEO</figcaption>
+			</figure>
+			<figure>
+				<img src="/img/broken-img.gif" alt="">
+				<figcaption>Action Hamilton, CEO</figcaption>
+			</figure>
+		</div>
+	</section>
+
+	<section>
+		<div>
+			<h2>Voted Top Workplace 2019</h2>
+			<p>We pride ourselves on an office rich with culture (and the food isn’t half bad either - thanks Susan!).</p>
+			<p>Based in downtown sunny Los Angeles, the view from our window can’t be beat either, Take a look!</p>
+		</div>
+		<div>
+			<img class="window" src="" alt="">
+		</div>
+	</section>
+
 </main>
 {{ end }}
