@@ -1,6 +1,7 @@
 baseURL = "https://abandoned.website/"
 languageCode = "en-us"
 title = "Abandoned Website"
+disableKinds = ["taxonomy", "term"]
 [params]
   description = "What if long-forgotten websites actually appeared abandoned?"
   title = "Abandoned.Website | Long-Forgotten, But Always Loved"
