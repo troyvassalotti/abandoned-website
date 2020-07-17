@@ -1,0 +1,15 @@
+@font-face {
+  font-family: 'Open Sans';
+  src: url("/fonts/open-sans-v17-latin-regular.woff2") format('woff2');
+  @include normal(400);
+}
+@font-face {
+  font-family: 'Open Sans';
+  src: url("/fonts/open-sans-v17-latin-italic.woff2") format('woff2');
+  @include italic(400);
+}
+@font-face {
+  font-family: 'Pavanam';
+  src: url("/fonts/pavanam-v4-latin-regular.woff2") format('woff2');
+  @include normal(400);
+}
