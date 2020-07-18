@@ -26,6 +26,12 @@ body {
 
 main {
   width: 100%;
+  margin: {
+    top: 1rem;
+    right: auto;
+    bottom: 1rem;
+    left: auto;
+  }
 }
 
 img {
@@ -122,6 +128,7 @@ SPECIFIED STYLES
   max-width: 70rem;
   flex-direction: column-reverse;
   align-items: center;
+  margin-top: 1rem;
   gap: var(--gap);
 }
 
@@ -146,6 +153,20 @@ SPECIFIED STYLES
   flex-direction: column;
   text-align: center;
   width: 100%;
+  padding: 1em 0;
   background: center/cover no-repeat url("/img/rob.jpg");
+
+  h1 {
+    margin: 0;
+  }
+}
+
+.news {
+  --gap: 1.5rem;
+}
+
+.newsItem {
+  background: rgba(247, 247, 255, .3);
+  padding: .5rem;
 }
 @import "_media";

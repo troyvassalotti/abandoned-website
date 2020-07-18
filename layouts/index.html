@@ -1,7 +1,7 @@
 {{ define "main" }}
-<main>
+<main class="grid place-center">
 
-	<header class="masthead">
+	<header class="masthead" id="intro">
 		<h1>{{ .Title }}</h1>
 		{{ with .Params.subtitle }}
 		<p>{{ . }}</p>
@@ -9,11 +9,11 @@
 		<a class="button" href="/services/">Our Services</a>
 	</header>
 
-	<section>
+	<section id="news">
 		<h2>Latest News</h2>
-		<div>
+		<div class="grid news">
 			{{ range last 3 .Site.RegularPages }}
-			<article>
+			<article class="newsItem">
 				<h3>{{ .Title }}</h3>
 				<p>{{ .Summary }}</p>
 				<a href="{{ .Permalink }}">Read more...</a>
@@ -22,7 +22,7 @@
 		</div>
 	</section>
 
-	<section>
+	<section id="who">
 		<h2>Who We Are</h2>
 		<p>We are a team of elite marketing professionals with over 100 years of breakthrough technological expertise.</p>
 		<div>
@@ -37,15 +37,13 @@
 		</div>
 	</section>
 
-	<section>
+	<section id="voted">
 		<div>
 			<h2>Voted Top Workplace 2019</h2>
 			<p>We pride ourselves on an office rich with culture (and the food isn’t half bad either - thanks Susan!).</p>
 			<p>Based in downtown sunny Los Angeles, the view from our window can’t be beat either, Take a look!</p>
 		</div>
-		<div>
-			<img class="window" src="/img/broken-img.gif" alt="">
-		</div>
+		<img class="window" src="/img/broken.gif" alt="">
 	</section>
 
 </main>
