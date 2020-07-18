@@ -3,19 +3,149 @@
 @import "_localfonts";
 @import "_normalize";
 
+:root {
+  --gap: 1rem;
+}
+/* =============
+BASE-LEVEL STYLES
+============= */
 html {
-  font: normal normal normal calc(14px + (26 - 14) * ((100vw - 320px) / (1920 - 320)))/1.5 $body;
+  word-wrap: break-word;
+  background: linear-gradient(130deg, #8A8A73 0%, rgba(22, 22, 21, 0.88) 10%, $black 30%);
+  color: $white;
 }
 
 body {
-  display: grid;
-  place-items: center;
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   max-width: 100%;
   min-height: 100vh;
+  font: normal normal normal calc(16px + (24 - 16) * ((100vw - 320px) / (1920 - 320)))/1.5 $body;
 }
 
 main {
   width: 100%;
-  padding: 2em;
 }
+
+img {
+  display: block;
+  width: 100%;
+  margin: auto;
+  height: auto;
+
+  &[height] {
+    height: auto; // Keep this for aspect ratios
+  }
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: $headings;
+  margin-top: 0;
+}
+/* =============
+COMPOSITION STYLES
+============= */
+.flex {
+  display: flex;
+}
+
+.col {
+  flex-direction: column;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.grid {
+  display: grid;
+  gap: var(--gap);
+}
+
+.two-col {
+  grid-template-columns: 1fr 1fr;
+}
+
+.place-center {
+  place-items: center;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wrap {
+  flex-wrap: wrap;
+}
+
+.center {
+  text-align: center;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.button {
+  background: $bright;
+  transition: background ease .25s, color ease .25s;
+  border-radius: 5px;
+  display: block;
+  padding: .5rem 1rem;
+  margin: 0;
+  text-decoration: none;
+  color: $white;
+  text-align: center;
+  font-family: $headings;
+  color: $black;
+
+  &:hover {
+    background: $dull;
+    color: $white;
+  }
+}
+/* =============
+SPECIFIED STYLES
+============= */
+.header {
+  justify-content: space-between;
+  max-width: 70rem;
+  flex-direction: column-reverse;
+  align-items: center;
+  gap: var(--gap);
+}
+
+.mainNavigation {
+  padding: 0;
+  margin: 0;
+  justify-content: space-evenly;
+
+  li {
+    list-style: none;
+
+    a {
+      color: $white;
+    }
+  }
+}
+
+.masthead {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  width: 100%;
+  background: center/cover no-repeat url("/img/rob.jpg");
+}
+@import "_media";
