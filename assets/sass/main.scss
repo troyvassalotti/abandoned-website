@@ -45,6 +45,14 @@ img {
   }
 }
 
+a {
+  color: $bright;
+
+  &:hover {
+    color: $white;
+  }
+}
+
 h1,
 h2,
 h3,
@@ -61,6 +69,10 @@ COMPOSITION STYLES
 
 .col {
   flex-direction: column;
+}
+
+.wrapper {
+  width: 95%;
 }
 
 .full-width {
@@ -142,6 +154,10 @@ SPECIFIED STYLES
 
     a {
       color: $white;
+
+      &:hover {
+        color: $bright;
+      }
     }
   }
 }
@@ -168,5 +184,13 @@ SPECIFIED STYLES
 .newsItem {
   background: rgba(247, 247, 255, .3);
   padding: .5rem;
+}
+
+.who {
+  margin: auto;
+
+  figure {
+    margin: 0;
+  }
 }
 @import "_media";

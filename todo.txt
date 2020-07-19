@@ -1,0 +1,1 @@
+Adjust the font sizes of the navigation links. While the responsive font sizing is cool, I don't want it for everything.
