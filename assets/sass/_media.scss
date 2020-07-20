@@ -1,0 +1,15 @@
+@media only screen and (min-width: 720px) {
+  .header {
+    flex-direction: row;
+  }
+
+  .voted {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .footer {
+    .content {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}
