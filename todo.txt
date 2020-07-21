@@ -1,5 +1,4 @@
-Gradient background color only on the homepage
-404 page
 clean up hugo tags
 clean up front matter and md files
 image credits
+animate the search bar

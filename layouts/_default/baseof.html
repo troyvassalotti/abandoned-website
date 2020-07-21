@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" dir="ltr" {{ with .Params.class }} class="{{ . }}" {{ end }}>
 
   <head>
     <meta charset="utf-8">
@@ -16,7 +16,7 @@
     {{ template "_internal/schema.html" . }}
   </head>
 
-  <body {{ with .Params.class }} class="{{ . }}" {{ end }}>
+  <body>
     {{ partial "header.html" . }}
     {{ block "main" . }}
     {{/* define the main block on each content page so it pops here */}}

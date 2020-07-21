@@ -1,9 +1,48 @@
-{{ define "main"}}
-<main>
-	<section>
-		<h1>Hmm...</h1>
-		<p>Something must've gone wrong!</p>
-		<p>We’re hard at work fixing whatever the problem is that got you here, don’t you worry!</p>
-	</section>
-</main>
-{{ end }}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="We’re hard at work fixing whatever the problem is that got you here, don’t you worry!">
+		{{ $options := (dict "targetPath" "style.css" "outputStyle" "compressed") }}
+		{{ $style := resources.Get "sass/main.scss" | resources.ToCSS $options }}
+		<link rel="stylesheet" href="{{ $style.Permalink }}">
+		<title>Yikes... Something Went Wrong.</title>
+		<meta name="robots" content="noindex">
+		{{ template "_internal/opengraph.html" . }}
+		{{ template "_internal/twitter_cards.html" . }}
+		{{ template "_internal/schema.html" . }}
+
+		<style>
+			html {
+				background: center/cover no-repeat url("/img/yener.jpg");
+			}
+
+			.subtitle {
+				font-size: calc(23px + (36 - 23) * ((100vw - 320px) / (1920 - 320)));
+				margin: .25em auto;
+			}
+
+			.message {
+				background-color: rgba(247, 247, 255, .9);
+				color: #000000;
+				height: 33vh;
+				padding: 1rem;
+			}
+		</style>
+	</head>
+
+	<body>
+		{{ partial "header.html" . }}
+		<main class="flex-center col">
+			<section class="flex-center col message wrapper center" data-constrain="more">
+				<h1>Hmm...</h1>
+				<p class="subtitle italic">Something must've gone wrong!</p>
+				<p>We’re hard at work fixing whatever the problem is that got you here, don’t you worry!</p>
+			</section>
+		</main>
+		{{ partial "footer.html" . }}
+	</body>
+
+</html>

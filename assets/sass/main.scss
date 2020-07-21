@@ -9,11 +9,10 @@
 /* =============
 BASE-LEVEL STYLES
 ============= */
-
 html {
   word-wrap: break-word;
-  background: linear-gradient(130deg, #8A8A73 0%, rgba(22, 22, 21, 0.88) 10%, $black 30%);
   color: $white;
+  background: $black;
 }
 
 body {
@@ -86,10 +85,17 @@ ul {
   margin: 0;
   padding-left: 0;
 }
+
+.servicesPage {
+  background: center/cover no-repeat url("/img/rob.jpg");
+}
+
+.homePage {
+  background: linear-gradient(130deg, #8A8A73 0%, rgba(22, 22, 21, 0.88) 10%, $black 30%);
+}
 /* =============
 COMPOSITION STYLES
 ============= */
-
 .flex {
   display: flex;
 }
@@ -175,7 +181,6 @@ COMPOSITION STYLES
 /* =============
 SPECIFIED STYLES
 ============= */
-
 .header {
   justify-content: space-between;
   max-width: 70rem;
@@ -188,7 +193,6 @@ SPECIFIED STYLES
 .mainNavigation {
   padding: 0;
   justify-content: space-evenly;
-  font-family: $headings;
 
   li {
     list-style: none;
@@ -221,7 +225,7 @@ SPECIFIED STYLES
 
 .newsItem {
   background: rgba(247, 247, 255, .3);
-  padding: .5rem;
+  padding: 1rem .5rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -295,7 +299,22 @@ SPECIFIED STYLES
   max-width: 360px;
 }
 
-.servicesPage {
-  background: center/cover no-repeat url("/img/rob.jpg");
+.listWrapper {
+  max-width: 1000px;
+  border-bottom: 1px solid $white;
+  padding: {
+    top: .5rem;
+    bottom: .5rem;
+  }
+}
+
+.newsPage main {
+  h1 {
+    font-size: calc(20px + (28 - 20) * ((100vw - 320px) / (1920 - 320)));
+  }
+
+  h2 {
+    font-size: calc(32px + (50 - 32) * ((100vw - 320px) / (1920 - 320)));
+  }
 }
 @import "_media";
