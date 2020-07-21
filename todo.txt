@@ -1,1 +1,5 @@
-Adjust the font sizes of the navigation links. While the responsive font sizing is cool, I don't want it for everything.
+Gradient background color only on the homepage
+404 page
+clean up hugo tags
+clean up front matter and md files
+image credits
