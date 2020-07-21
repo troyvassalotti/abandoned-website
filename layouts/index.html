@@ -1,17 +1,19 @@
 {{ define "main" }}
 <main class="grid place-center">
 
-	<header class="masthead" id="intro">
-		<h1>{{ .Params.hero }}</h1>
-		{{ with .Params.subtitle }}
-		<p>{{ . }}</p>
-		{{ end }}
-		<a class="button" href="/services/">Our Services</a>
+	<header class="masthead flex-center col" id="intro">
+		<div class="wrapper flex-center col center" data-constrain="most">
+			<h1>{{ .Params.hero }}</h1>
+			{{ with .Params.subtitle }}
+			<p>{{ . }}</p>
+			{{ end }}
+			<a class="button" href="/services/">Our Services</a>
+		</div>
 	</header>
 
 	<section class="full-width flex-center" id="news">
 		<div class="wrapper">
-			<h2>Latest News</h2>
+			<h2 class="headline">Latest News</h2>
 			<div class="grid news">
 				{{ range last 3 .Site.RegularPages }}
 				<article class="newsItem">
@@ -37,11 +39,11 @@
 			<div class="grid two-col team wrapper place-center">
 				<figure>
 					<img src="/img/broken.gif" alt="">
-					<figcaption>Action Hamilton, CEO</figcaption>
+					<figcaption class="italic">Action Hamilton, CEO</figcaption>
 				</figure>
 				<figure>
 					<img src="/img/broken.gif" alt="">
-					<figcaption>Action Hamilton, CEO</figcaption>
+					<figcaption class="italic">Action Hamilton, CEO</figcaption>
 				</figure>
 			</div>
 		</div>

@@ -9,7 +9,7 @@
   @include italic(400);
 }
 @font-face {
-  font-family: 'Pavanam';
-  src: url("/fonts/pavanam-v4-latin-regular.woff2") format('woff2');
-  @include normal(400);
+  font-family: 'Poppins';
+  src: url("/fonts/poppins-v12-latin-700.woff2") format('woff2');
+  @include normal(700);
 }

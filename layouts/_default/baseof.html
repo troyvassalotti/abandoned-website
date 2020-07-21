@@ -16,7 +16,7 @@
     {{ template "_internal/schema.html" . }}
   </head>
 
-  <body>
+  <body {{ with .Params.class }} class="{{ . }}" {{ end }}>
     {{ partial "header.html" . }}
     {{ block "main" . }}
     {{/* define the main block on each content page so it pops here */}}

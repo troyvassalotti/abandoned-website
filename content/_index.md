@@ -1,6 +1,6 @@
 ---
 title: "Home"
 hero: "Quality Over Quantity"
-subtitle: "We're a company dedicated to long-lasting, quality service."
+subtitle: "At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution."
 description: "What if a website, left to wither away and be forgotten, actually looked abandoned over time?"
 ---
