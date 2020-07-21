@@ -1,4 +1,2 @@
-clean up hugo tags
-clean up front matter and md files
-image credits
+image credits page
 animate the search bar

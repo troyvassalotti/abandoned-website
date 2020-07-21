@@ -1,5 +1,5 @@
 ---
 title: "Services"
-description: "Here are all our services."
+description: "Check out all the services we provide... or uh, provided, I guess."
 class: "servicesPage"
 ---

@@ -9,6 +9,7 @@
 /* =============
 BASE-LEVEL STYLES
 ============= */
+
 html {
   word-wrap: break-word;
   color: $white;
@@ -96,6 +97,7 @@ ul {
 /* =============
 COMPOSITION STYLES
 ============= */
+
 .flex {
   display: flex;
 }
@@ -181,6 +183,7 @@ COMPOSITION STYLES
 /* =============
 SPECIFIED STYLES
 ============= */
+
 .header {
   justify-content: space-between;
   max-width: 70rem;
@@ -315,6 +318,17 @@ SPECIFIED STYLES
 
   h2 {
     font-size: calc(32px + (50 - 32) * ((100vw - 320px) / (1920 - 320)));
+  }
+}
+
+.article {
+  padding: {
+    top: var(--gap);
+    bottom: var(--gap);
+  }
+
+  header {
+    border-bottom: 1px solid $white;
   }
 }
 @import "_media";

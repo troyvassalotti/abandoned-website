@@ -1,16 +1,14 @@
 {{ define "main" }}
-<main>
+<main class="wrapper article" data-constrain="more">
   <header>
     <h1>{{ .Title }}</h1>
     <aside class="meta">
-      <p id="date">{{ .Date.Format "Mon Jan 2, 2006" }}</p>
-      <p id="wordcount">{{ .WordCount }} Words</p>
+      <p id="date" class="italic">{{ .Date.Format "Mon Jan 2, 2006" }}</p>
+      <p id="wordcount" class="italic">{{ .WordCount }} Words</p>
     </aside>
   </header>
-  <div>
-    <article>
-      {{ .Content }}
-    </article>
-  </div>
+  <article class="wrapper">
+    {{ .Content }}
+  </article>
 </main>
 {{ end }}
