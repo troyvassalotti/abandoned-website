@@ -1,5 +1,4 @@
 image credits page
 animate the search bar
-make the single pages (services and 404) take up more of the viewport, specifically for mobile
 style the sitemap
 throw on a nonsense favicon
