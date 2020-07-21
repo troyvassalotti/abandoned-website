@@ -1,0 +1,31 @@
+@media only screen and (min-width: 720px) {
+  :root {
+    --gap: 3rem;
+  }
+
+  .header {
+    flex-direction: row;
+  }
+
+  .voted {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .window {
+    margin: 0 0 0 auto;
+  }
+
+  .footer {
+    .content {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .article {
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+}

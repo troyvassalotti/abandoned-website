@@ -1,16 +1,21 @@
+# Build the site please
+[build]
+  command = "hugo --gc --minify"
+  publish = "public"
+
 # Assign all the post-processing
 [build.processing]
   skip_processing = false
 [build.processing.css]
-  bundle = true
+  bundle = false
   minify = false
 [build.processing.js]
-  bundle = true
-  minify = true
+  bundle = false
+  minify = false
 [build.processing.html]
   pretty_urls = true
 [build.processing.images]
-  compress = true
+  compress = false
 
 # Redirect from the default Netlify site to my custom domain
 [[redirects]]
@@ -27,7 +32,3 @@
     X-Frame-Options = "SAMEORIGIN"
     X-XSS-Protection = "1"
     Content-Security-Policy = "default-src 'self' https://d33wubrfki0l68.cloudfront.net 'unsafe-inline'"
-
-# Plugins
-[[plugins]]
-package = "@netlify/plugin-sitemap"

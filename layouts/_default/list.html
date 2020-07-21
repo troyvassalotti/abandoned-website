@@ -1,0 +1,16 @@
+{{ define "main" }}
+<main class="flex-center col">
+  <h1 class="headline">{{ .Title }}</h1>
+
+  <div class="wrapper grid place-center">
+    {{ range .Pages }}
+    <article class="listWrapper">
+      <h2 class="center">{{ .Title }}</h2>
+      {{ .Content }}
+      <p class="center"><a href="{{ .Permalink }}">Permalink</a></p>
+    </article>
+    {{ end }}
+  </div>
+
+</main>
+{{ end }}
