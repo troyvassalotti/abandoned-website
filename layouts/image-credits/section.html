@@ -6,7 +6,7 @@
   </header>
   {{ range .Site.Data.images.credits.photographers }}
   <article class="full-width flex-center col">
-    <div class="wrapper grid credits">
+    <div class="wrapper grid credits" data-constrain="more">
       <section>
         <h2>Photographer: {{ .name }}</h2>
         <p><a href="{{ .profile }}" target="_blank" rel="noopener">Unsplash Profile</a></p>
