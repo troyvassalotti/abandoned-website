@@ -1,6 +1,6 @@
 baseURL = "https://abandoned.website/"
 languageCode = "en-us"
-title = "Abandoned Website V1"
+title = "Abandoned Website v.1"
 disableKinds = ["taxonomy", "term"]
 summaryLength = 30
 [params]
