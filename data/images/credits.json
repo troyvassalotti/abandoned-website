@@ -2,18 +2,30 @@
   "photographers": [{
     "name": "Rob",
     "profile": "https://unsplash.com/@robbyj",
-    "img": "https://unsplash.com/photos/EPY-iW3DfUo"
+    "local": "/img/rob.jpg",
+    "img": "https://unsplash.com/photos/EPY-iW3DfUo",
+    "width": "1920",
+    "height": "1280"
   }, {
     "name": "Matt Palmer",
     "profile": "https://unsplash.com/@mattpalmer",
-    "img": "https://unsplash.com/photos/J8KMIolTmGA"
+    "local": "/img/matt-full.jpg",
+    "img": "https://unsplash.com/photos/J8KMIolTmGA",
+    "width": "1920",
+    "height": "1280"
   }, {
     "name": "Yener Ozturk",
     "profile": "https://unsplash.com/@ynrozturk",
-    "img": "https://unsplash.com/photos/_u3rMKylNdQ"
+    "local": "/img/yener.jpg",
+    "img": "https://unsplash.com/photos/_u3rMKylNdQ",
+    "width": "1920",
+    "height": "1280"
   }, {
     "name": "Liam Andrew",
     "profile": "https://unsplash.com/@liamandrewcura",
-    "img": "https://unsplash.com/photos/W7CopGaHkEM"
+    "local": "/img/liam.jpg",
+    "img": "https://unsplash.com/photos/W7CopGaHkEM",
+    "width": "1920",
+    "height": "1371"
   }]
 }

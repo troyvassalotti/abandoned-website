@@ -1,3 +1,24 @@
 {{ define "main" }}
-{{/* use .Site.Data.images.credits */}}
+<main class="grid place-center">
+  <header class="wrapper center" data-constrain="most">
+    <h1>{{ .Title }}</h1>
+    <p>{{ .Params.description }}</p>
+  </header>
+  {{ range .Site.Data.images.credits.photographers }}
+  <article class="full-width flex-center col">
+    <div class="wrapper grid credits">
+      <section>
+        <h2>Photographer: {{ .name }}</h2>
+        <p><a href="{{ .profile }}" target="_blank" rel="noopener">Unsplash Profile</a></p>
+      </section>
+      <section>
+        <figure>
+          <img src="{{ .local }}" alt="{{ .name }}'s Photo" width="{{ .width }}" height="{{ .height }}" loading="lazy">
+          <figcaption><a href="{{ .img }}" target="_blank" rel="noopener" class="italic">View on Unsplash</a></figcaption>
+        </figure>
+      </section>
+    </div>
+  </article>
+  {{ end }}
+</main>
 {{ end }}
