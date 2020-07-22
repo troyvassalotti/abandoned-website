@@ -1,10 +1,14 @@
 @media only screen and (min-width: 720px) {
   :root {
-    --gap: 3rem;
+    --gap: 6rem;
   }
 
   .header {
     flex-direction: row;
+  }
+
+  .mainNavigation {
+    margin: 0;
   }
 
   .voted {
@@ -32,5 +36,13 @@
   .credits {
     grid-template-columns: 1fr 1fr;
     align-items: center;
+  }
+}
+@media only screen and (min-width: 70rem) {
+  .header {
+    margin: {
+      right: 0;
+      left: 79.5px;
+    }
   }
 }

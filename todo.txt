@@ -1,3 +1,1 @@
-animate the search bar
-style the sitemap
-throw on a nonsense favicon
+

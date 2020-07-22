@@ -28,3 +28,5 @@
     </nav>
   </div>
 </footer>
+{{ $js := resources.Get "js/main.js" | resources.Minify }}
+<script src="{{ $js.Permalink }}" async></script>
