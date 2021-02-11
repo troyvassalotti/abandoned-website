@@ -1,9 +1,32 @@
-@import "_mixins";
-@import "_globals";
-@import "_localfonts";
-@import "_normalize";
+// Globals
+$white: #f7f7f7;
+$black: #131313;
+$blue: #576fc7;
+$dull: #656565;
+$bright: #fca311;
+$red: #bb2825;
+
+@import "_sanitize";
 
 :root {
+  /* @link https://utopia.fyi/generator-mk-ii?c=320,18,1.2,1140,21,1.25,6,3, */
+  --step--3: clamp(0.6513rem, 0.5949rem + 0.2817vw, 0.7956rem);
+  --step--2: clamp(0.7813rem, 0.7134rem + 0.339vw, 0.955rem);
+  --step--1: clamp(0.9375rem, 0.8563rem + 0.4061vw, 1.1456rem);
+  --step-0: clamp(1.125rem, 1.0762rem + 0.2439vw, 1.25rem);
+  --step-1: clamp(1.35rem, 1.2329rem + 0.5854vw, 1.65rem);
+  --step-2: clamp(1.62rem, 1.4795rem + 0.7024vw, 1.98rem);
+  --step-3: clamp(1.9438rem, 1.775rem + 0.8439vw, 2.3763rem);
+  --step-4: clamp(2.3325rem, 2.1301rem + 1.0122vw, 2.8513rem);
+  --step-5: clamp(2.7994rem, 2.5567rem + 1.2134vw, 3.4213rem);
+  --step-6: clamp(3.3594rem, 3.0682rem + 1.4561vw, 4.1056rem);
+  /* font styles */
+  --fallback: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji,
+    Segoe UI Symbol;
+  --body: "Oxygen", var(--fallback);
+  --headings: "Bitter", var(--fallback);
+  /* content styles */
   --gap: 1.25rem;
 }
 /* =============
@@ -11,39 +34,38 @@ BASE-LEVEL STYLES
 ============= */
 
 html {
+  line-height: 1.5;
   word-wrap: break-word;
+  font-family: var(--body);
   color: $white;
-  background: $black;
+  background: linear-gradient(
+    130deg,
+    #8a8a73 0%,
+    rgba(22, 22, 21, 0.88) 10%,
+    $black 30%
+  );
 }
 
 body {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  max-width: 100%;
-  min-height: 100vh;
-  font: normal normal normal calc(16px + (19 - 16) * ((100vw - 320px) / (1920 - 320)))/1.5 $body;
-}
-
-main {
   width: 100%;
-  margin: 2rem auto 4rem;
+  min-height: 100vh;
+  font-size: var(--step-0);
 }
 
 img {
   display: block;
-  width: 100%;
-  margin: auto;
-  height: auto;
+  max-width: 100%;
 
   &[height] {
-    height: auto; // Keep this for aspect ratios
+    height: auto;
   }
 }
 
 a {
   color: $bright;
+  transition: color 0.3s ease;
 
   &:hover {
     color: $white;
@@ -54,7 +76,7 @@ h1,
 h2,
 h3,
 h4 {
-  font-family: $headings;
+  font-family: var(--headings);
   margin: {
     top: 0;
     bottom: 0;
@@ -62,24 +84,19 @@ h4 {
 }
 
 h1 {
-  font-size: calc(32px + (50 - 32) * ((100vw - 320px) / (1920 - 320)));
+  font-size: var(--step-4);
 }
 
 h2 {
-  font-size: calc(26px + (44 - 26) * ((100vw - 320px) / (1920 - 320)));
+  font-size: var(--step-3);
 }
 
 h3 {
-  font-size: calc(23px + (36 - 23) * ((100vw - 320px) / (1920 - 320)));
+  font-size: var(--step-2);
 }
 
 h4 {
-  font-size: calc(20px + (32 - 20) * ((100vw - 320px) / (1920 - 320)));
-}
-
-ul {
-  margin: 0;
-  padding-left: 0;
+  font-size: var(--step-1);
 }
 
 .servicesPage {
@@ -90,10 +107,6 @@ ul {
 .servicesPage main {
   height: 100vw;
   max-height: 500px;
-}
-
-.homePage {
-  background: linear-gradient(130deg, #8A8A73 0%, rgba(22, 22, 21, 0.88) 10%, $black 30%);
 }
 /* =============
 ANIMATION STYLES
@@ -127,6 +140,7 @@ ANIMATION STYLES
   100% {
     transform: translateY(99vh) rotate(480deg);
     opacity: 0;
+    display: none;
   }
 }
 /* =============
@@ -144,6 +158,11 @@ COMPOSITION STYLES
 .wrapper {
   width: 95%;
   max-width: 1600px;
+  margin: auto;
+
+  &[data-constrain="some"] {
+    max-width: 1300px !important;
+  }
 
   &[data-constrain="more"] {
     max-width: 1100px !important;
@@ -154,8 +173,16 @@ COMPOSITION STYLES
   }
 }
 
-.full-width {
+.full {
   width: 100%;
+}
+
+.tall {
+  height: 100%;
+}
+
+.marginalize {
+  margin: auto;
 }
 
 .grid {
@@ -195,16 +222,21 @@ COMPOSITION STYLES
 
 .button {
   background: $bright;
-  transition: background ease .25s, color ease .25s;
-  border-radius: 5px;
-  display: block;
-  padding: .5rem 1rem;
+  color: $black;
+  transition: background ease 0.25s, color ease 0.25s;
+  border-radius: 1ex;
+  display: inline-block;
   margin: 0;
   text-decoration: none;
-  color: $white;
-  text-align: center;
-  font-family: $headings;
-  color: $black;
+  font-family: var(--headings);
+  padding-inline: {
+    start: 1.5ch;
+    end: 1.5ch;
+  }
+  padding-block: {
+    start: 1ch;
+    end: 1ch;
+  }
 
   &:hover {
     background: $dull;
@@ -213,100 +245,127 @@ COMPOSITION STYLES
 }
 
 .headline {
-  margin-bottom: .5em;
+  margin-bottom: 0.5em;
 }
 /* =============
 SPECIFIED STYLES
 ============= */
+.site-header {
+  padding-block-start: 1em;
 
-.header {
-  justify-content: space-between;
-  flex-direction: column-reverse;
-  align-items: center;
-  margin: {
-    top: 1rem;
-    right: auto;
-    left: auto;
-  }
-  max-width: 60rem;
-}
+  .main-navigation {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    font-size: var(--step--1);
 
-.mainNavigation {
-  padding: 0;
-  justify-content: space-between;
-  margin: {
-    top: 1rem;
-    left: auto;
-    right: auto;
-  }
-  width: clamp(305px, 85%, 50rem);
+    ul {
+      display: inline-flex;
+      // using all caps MIN because SASS
+      width: MIN(600px, 100%);
+      justify-content: space-between;
+      margin-block: {
+        start: 1em;
+        end: 1em;
+      }
 
-  li {
-    list-style: none;
+      li {
+        a {
+          color: $white;
 
-    a {
-      color: $white;
+          &:hover {
+            color: $bright;
+          }
+        }
+      }
+    }
 
-      &:hover {
-        color: $bright;
+    form {
+      display: flex;
+      justify-content: center;
+    }
+
+    @media (min-width: 890px) {
+      form {
+        margin-inline-start: auto;
       }
     }
   }
 }
 
-.masthead {
-  width: 100%;
-  height: clamp(320px, 70vw, 550px);
-  padding: 1em 0;
+.page-wrap {
+  display: grid;
+  grid-template: {
+    columns: minmax(10px, 1fr) minmax(10px, 3fr);
+    rows: 1fr;
+  }
 
-  h1 {
-    margin: 0;
+  @media (max-width: 1074px) {
+    grid-template: {
+      columns: 100%;
+      rows: auto;
+    }
+    > * {
+      grid-column: 1 / -1 !important;
+      grid-row: auto !important;
+    }
+  }
+
+  .page-sidebar {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+  }
+
+  .page-main {
+    grid-column: 2 / 3;
+    display: grid;
+    gap: var(--gap);
   }
 }
 
-.news {
+.masthead {
+  text-align: center;
+  padding-block: {
+    start: 17vw;
+    end: 17vw;
+  }
+}
+
+.news-list {
   --gap: 1.5rem;
   grid-template-columns: repeat(auto-fit, minmax(305px, 1fr));
-}
 
-.newsItem {
-  background: rgba(247, 247, 255, .3);
-  padding: 1rem .5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-#voted {
-  color: $black;
-  background: $bright;
-  padding: 1rem 0;
-}
-
-.who {
-  header {
-    max-width: 425px;
+  .news-item {
+    background: rgba(247, 247, 255, 0.3);
+    padding: 1rem 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 }
 
-.team {
-  margin: 1em auto;
+.team-portraits {
   --gap: 3rem;
+  justify-items: center;
+  margin-block-end: 2em;
 
   figure {
     margin: 0;
     max-width: 275px;
   }
-
-  img {
-    filter: grayscale(100%);
-    border-radius: 1.5em;
-  }
 }
 
-.window {
-  border-radius: 50%;
-  max-width: 400px;
+#voted {
+  color: $black;
+  background: $bright;
+
+  .window {
+    border-radius: 50%;
+    // all caps MIN because SASS
+    width: MIN(400px, 100%);
+    margin: auto;
+  }
 }
 
 .footer {
@@ -355,18 +414,8 @@ SPECIFIED STYLES
   max-width: 1000px;
   border-bottom: 1px solid $white;
   padding: {
-    top: .5rem;
-    bottom: .5rem;
-  }
-}
-
-.newsPage main {
-  h1 {
-    font-size: calc(20px + (28 - 20) * ((100vw - 320px) / (1920 - 320)));
-  }
-
-  h2 {
-    font-size: calc(32px + (50 - 32) * ((100vw - 320px) / (1920 - 320)));
+    top: 0.5rem;
+    bottom: 0.5rem;
   }
 }
 
@@ -382,4 +431,4 @@ SPECIFIED STYLES
     max-width: 500px;
   }
 }
-@import "_media";
+// @import "_media";

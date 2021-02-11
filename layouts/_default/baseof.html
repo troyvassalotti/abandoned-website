@@ -1,34 +1,46 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" {{ with .Params.class }} class="{{ . }}" {{ end }}>
+<html lang="en" dir="ltr">
 
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    {{ block "robots" . }}
-    {{/* define the meta robots if needed */}}
-    {{ end }}
+    {{ block "robots" . }}{{/* define the meta robots if needed */}}{{ end }}
     {{ $description := .Params.description }}
     <meta name="description" content="{{ $description }}">
-    {{ $options := (dict "targetPath" "style.css" "outputStyle" "compressed") }}
-    {{ $style := resources.Get "sass/main.scss" | resources.ToCSS $options }}
-    <link rel="stylesheet" href="{{ $style.Permalink }}">
-    <link rel="shortcut icon" href="/img/favicon.ico" />
     <title>{{ .Page.Title }} | {{ .Site.Title }}</title>
     {{ template "_internal/opengraph.html" . }}
     {{ template "_internal/twitter_cards.html" . }}
     {{ template "_internal/schema.html" . }}
 
+    {{/* Google Fonts Block */}}
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,400;0,700;1,400&family=Oxygen:wght@400;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,400;0,700;1,400&family=Oxygen:wght@400;700&display=swap" media="print" onload="this.media='all'" />
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,400;0,700;1,400&family=Oxygen:wght@400;700&display=swap" />
+    </noscript>
+
+    {{ $options := (dict "targetPath" "style.css" "outputStyle" "compressed") }}
+    {{ $style := resources.Get "sass/main.scss" | resources.ToCSS $options }}
+    <link rel="stylesheet" href="{{ $style.Permalink }}">
+    <link rel="shortcut icon" href="/img/favicon.ico" />
+
     {{ block "inlineStyle" . }}
-    {{/* define the inline style block if needed */}}
+    {{/* define the inline style block within the template if needed */}}
     {{ end }}
   </head>
 
-  <body>
+  <body {{ with .Params.class }} class="{{ . }}" {{ end }}>
     {{ partial "header.html" . }}
-    {{ block "main" . }}
+
+    {{ block "content" . }}
     {{/* define the main block on each content page so it pops here */}}
     {{ end }}
+
     {{ partial "footer.html" . }}
+
+    {{ $js := resources.Get "js/main.js" | resources.Minify }}
+    <script src="{{ $js.Permalink }}" async></script>
   </body>
 
 </html>
