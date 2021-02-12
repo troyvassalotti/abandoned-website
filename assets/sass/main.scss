@@ -1,11 +1,3 @@
-// Globals
-$white: #f7f7f7;
-$black: #131313;
-$blue: #576fc7;
-$dull: #656565;
-$bright: #fca311;
-$red: #bb2825;
-
 @import "_sanitize";
 
 :root {
@@ -28,6 +20,20 @@ $red: #bb2825;
   --headings: "Bitter", var(--fallback);
   /* content styles */
   --gap: 1.25rem;
+  /* Colors */
+  --black-50: #f3f2f2;
+  --black-100: #d8d8d8;
+  --black-200: #bebebe;
+  --black-300: #a4a4a4;
+  --black-400: #8a898a;
+  --black-500: #716f70;
+  --black-600: #575657;
+  --black-700: #3e3e3e;
+  --black-800: #252525;
+  --black-900: #0d0c0d;
+  --bright: #fca311;
+  --blue: #576fc7;
+  --red: #bb2825;
 }
 /* =============
 BASE-LEVEL STYLES
@@ -37,12 +43,12 @@ html {
   line-height: 1.5;
   word-wrap: break-word;
   font-family: var(--body);
-  color: $white;
+  color: var(--black-50);
   background: linear-gradient(
-    130deg,
+    230deg,
     #8a8a73 0%,
     rgba(22, 22, 21, 0.88) 10%,
-    $black 30%
+    var(--black-900) 30%
   );
 }
 
@@ -64,11 +70,11 @@ img {
 }
 
 a {
-  color: $bright;
+  color: var(--bright);
   transition: color 0.3s ease;
 
   &:hover {
-    color: $white;
+    color: var(--black-50);
   }
 }
 
@@ -221,8 +227,8 @@ COMPOSITION STYLES
 }
 
 .button {
-  background: $bright;
-  color: $black;
+  background: var(--bright);
+  color: var(--black-900);
   transition: background ease 0.25s, color ease 0.25s;
   border-radius: 1ex;
   display: inline-block;
@@ -239,8 +245,8 @@ COMPOSITION STYLES
   }
 
   &:hover {
-    background: $dull;
-    color: $white;
+    background: var(--black-600);
+    color: var(--black-50);
   }
 }
 
@@ -251,7 +257,31 @@ COMPOSITION STYLES
 SPECIFIED STYLES
 ============= */
 .site-header {
-  padding-block-start: 1em;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  button {
+    position: absolute;
+    right: 1em;
+    top: 1em;
+    padding: 8px;
+    border: 2px solid var(--white);
+    border-radius: 5px;
+    font-size: 1em;
+    background: transparent;
+    color: var(--white);
+    display: none;
+  }
+
+  &.opened {
+    background: var(--black-900);
+  }
 
   .main-navigation {
     display: flex;
@@ -261,7 +291,6 @@ SPECIFIED STYLES
     font-size: var(--step--1);
 
     ul {
-      display: inline-flex;
       // using all caps MIN because SASS
       width: MIN(600px, 100%);
       justify-content: space-between;
@@ -272,10 +301,10 @@ SPECIFIED STYLES
 
       li {
         a {
-          color: $white;
+          color: var(--black-50);
 
           &:hover {
-            color: $bright;
+            color: var(--bright);
           }
         }
       }
@@ -290,6 +319,52 @@ SPECIFIED STYLES
       form {
         margin-inline-start: auto;
       }
+    }
+  }
+}
+
+.js {
+  .site-header {
+    #menu {
+      display: none;
+
+      &.is-active {
+        display: block;
+        padding-inline-start: 2em;
+      }
+    }
+
+    button {
+      display: block;
+    }
+  }
+}
+
+@media (min-width: 700px) {
+  .js {
+    .site-header {
+      position: static;
+      display: block;
+      padding-block-start: 1em;
+
+      .main-navigation {
+        ul {
+          display: inline-flex;
+        }
+      }
+      #menu {
+        display: flex;
+      }
+
+      button {
+        display: none;
+      }
+    }
+  }
+
+  .site-header {
+    button {
+      display: none;
     }
   }
 }
@@ -315,6 +390,28 @@ SPECIFIED STYLES
   .page-sidebar {
     grid-column: 1 / 2;
     grid-row: 1 / 2;
+    font-size: var(--step--1);
+    background-color: var(--black-50);
+    background-clip: content-box;
+    color: var(--black-900);
+    mix-blend-mode: color-dodge;
+    padding-block: {
+      start: 2em;
+      end: 2em;
+    }
+
+    .wrapper {
+      display: grid;
+      gap: var(--gap);
+    }
+
+    .window {
+      border-radius: 50%;
+      // all caps MIN because SASS
+      width: MIN(300px, 100%);
+      margin: auto;
+      mix-blend-mode: difference;
+    }
   }
 
   .page-main {
@@ -327,8 +424,8 @@ SPECIFIED STYLES
 .masthead {
   text-align: center;
   padding-block: {
-    start: 17vw;
-    end: 17vw;
+    start: 10vh;
+    end: 10vh;
   }
 }
 
@@ -337,11 +434,19 @@ SPECIFIED STYLES
   grid-template-columns: repeat(auto-fit, minmax(305px, 1fr));
 
   .news-item {
-    background: rgba(247, 247, 255, 0.3);
+    background: var(--black-600);
     padding: 1rem 0.5rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+
+    &:nth-child(2) {
+      background: var(--black-700);
+    }
+
+    &:nth-child(3) {
+      background: var(--black-800);
+    }
   }
 }
 
@@ -352,24 +457,13 @@ SPECIFIED STYLES
 
   figure {
     margin: 0;
-    max-width: 275px;
-  }
-}
-
-#voted {
-  color: $black;
-  background: $bright;
-
-  .window {
-    border-radius: 50%;
-    // all caps MIN because SASS
-    width: MIN(400px, 100%);
-    margin: auto;
+    max-width: 200px;
+    mix-blend-mode: multiply;
   }
 }
 
 .footer {
-  background: $dull;
+  background: var(--black-600);
   position: relative;
   overflow: hidden;
   padding: {
@@ -412,7 +506,7 @@ SPECIFIED STYLES
 
 .listWrapper {
   max-width: 1000px;
-  border-bottom: 1px solid $white;
+  border-bottom: 1px solid var(--black-50);
   padding: {
     top: 0.5rem;
     bottom: 0.5rem;
@@ -421,7 +515,7 @@ SPECIFIED STYLES
 
 .article {
   header {
-    border-bottom: 1px solid $white;
+    border-bottom: 1px solid var(--black-50);
   }
 }
 
