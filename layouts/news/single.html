@@ -1,11 +1,11 @@
 {{ define "content" }}
-<main class="wrapper article" data-constrain="more">
+<main class="article">
   <header>
     <h1>{{ .Title }}</h1>
-    <aside class="meta">
+    <div class="meta">
       <p id="date" class="italic">{{ .Date.Format "Mon Jan 2, 2006" }}</p>
       <p id="wordcount" class="italic">{{ .WordCount }} Words</p>
-    </aside>
+    </div>
   </header>
   <article class="wrapper">
     {{ .Content }}

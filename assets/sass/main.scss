@@ -71,7 +71,6 @@ img {
 
 a {
   color: var(--bright);
-  transition: color 0.3s ease;
 
   &:hover {
     color: var(--black-50);
@@ -302,7 +301,7 @@ HEADER STYLES
     border-radius: 5px;
     font-size: 1em;
     background: transparent;
-    display: none;
+    display: block;
 
     svg {
       stroke: var(--black-50);
@@ -315,15 +314,16 @@ HEADER STYLES
   }
 
   .main-navigation {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    align-items: center;
     font-size: var(--step-1);
+    display: none;
+
+    &.is-active {
+      display: block;
+      padding-inline-start: 2em;
+    }
 
     ul {
       width: MIN(600px, 100%); // using all caps MIN because SASS
-      justify-content: space-between;
       margin-block: {
         start: 1em;
         end: 1em;
@@ -355,48 +355,25 @@ HEADER STYLES
   }
 }
 
-.js {
-  .site-header {
-    #menu {
-      display: none;
-
-      &.is-active {
-        display: block;
-        padding-inline-start: 2em;
-      }
-    }
-
-    button {
-      display: block;
-    }
-  }
-}
-
 @media (min-width: 700px) {
-  .js {
-    .site-header {
-      position: static;
-      display: block;
-      padding-block-start: 1em;
+  .site-header {
+    position: static;
+    display: block;
+    padding-block-start: 1em;
 
-      .main-navigation {
-        font-size: var(--step--1);
+    .main-navigation {
+      font-size: var(--step--1);
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: center;
+      align-items: center;
 
-        ul {
-          display: inline-flex;
-        }
-      }
-      #menu {
-        display: flex;
-      }
-
-      button {
-        display: none;
+      ul {
+        display: inline-flex;
+        justify-content: space-between;
       }
     }
-  }
 
-  .site-header {
     button {
       display: none;
     }
@@ -552,9 +529,8 @@ FOOTER STYLES
 }
 
 /* =============
-OTHER STYLES
+SERVICES PAGE STYLES
 ============= */
-
 .services-page {
   background: center/cover no-repeat url("/img/rob.jpg");
 
@@ -570,18 +546,52 @@ OTHER STYLES
   }
 }
 
-.listWrapper {
-  max-width: 1000px;
-  border-bottom: 1px solid var(--black-50);
-  padding: {
-    top: 0.5rem;
-    bottom: 0.5rem;
+/* =============
+NEWS PAGE STYLES
+============= */
+.news-page {
+  main {
+    padding-block: {
+      start: 5vh;
+      end: 5vh;
+    }
+  }
+
+  #list {
+    --gap: 2em;
+  }
+}
+
+.news-article {
+  &:not(:last-of-type) {
+    border-bottom: 1px solid var(--black-50);
   }
 }
 
 .article {
+  width: MIN(95%, 1100px);
+  margin-inline: {
+    start: auto;
+    end: auto;
+  }
+  padding-block: {
+    start: 5vh;
+    end: 5vh;
+  }
+
   header {
     border-bottom: 1px solid var(--black-50);
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+
+    > * {
+      padding-inline: {
+        start: 5px;
+        end: 5px;
+      }
+    }
   }
 }
 
