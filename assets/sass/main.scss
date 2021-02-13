@@ -32,7 +32,7 @@
   --black-800: #252525;
   --black-900: #0d0c0d;
   --bright: #fca311;
-  --blue: #576fc7;
+  --blue: #576fef;
   --red: #bb2825;
 }
 /* =============
@@ -46,8 +46,8 @@ html {
   color: var(--black-50);
   background: linear-gradient(
     230deg,
-    #8a8a73 0%,
-    rgba(22, 22, 21, 0.88) 10%,
+    var(--black-300) 0%,
+    var(--black-600) 15%,
     var(--black-900) 30%
   );
 }
@@ -103,16 +103,6 @@ h3 {
 
 h4 {
   font-size: var(--step-1);
-}
-
-.servicesPage {
-  background: center/cover no-repeat url("/img/rob.jpg");
-}
-
-.errorPage,
-.servicesPage main {
-  height: 100vw;
-  max-height: 500px;
 }
 /* =============
 ANIMATION STYLES
@@ -253,9 +243,45 @@ COMPOSITION STYLES
 .headline {
   margin-bottom: 0.5em;
 }
+
+// The Devil's Albatross
+.centerflex {
+  /* ↓ Save the large negative or large positive value to a variable */
+  --multiplier: calc((var(--centerflex-threshold, 38rem) - 100%) * 666);
+
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  /* ↓ Multiply by -1 to make negative */
+  margin: calc(var(--centerflex-gap, 1rem) / 2 * -1) 0;
+
+  &:before {
+    content: "";
+    // flex-grow: 666;
+    margin: 0;
+    /* ↓ If --multiplier is negative, use 0px instead */
+    flex-basis: MAX(0px, var(--multiplier));
+  }
+
+  > * {
+    /* ↓ Half the value to each element, combining to make the whole */
+    margin: calc(var(--centerflex-gap, 1rem) / 2) auto;
+
+    &:first-child {
+      order: -1;
+    }
+  }
+}
 /* =============
-SPECIFIED STYLES
+HEADER STYLES
 ============= */
+#header {
+  margin-block: {
+    start: 0;
+    end: 0;
+  }
+}
+
 .site-header {
   position: absolute;
   top: 0;
@@ -265,22 +291,27 @@ SPECIFIED STYLES
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  z-index: 2;
 
   button {
     position: absolute;
     right: 1em;
     top: 1em;
-    padding: 8px;
-    border: 2px solid var(--white);
+    padding: 5px;
+    border: 2px solid var(--black-50);
     border-radius: 5px;
     font-size: 1em;
     background: transparent;
-    color: var(--white);
     display: none;
+
+    svg {
+      stroke: var(--black-50);
+    }
   }
 
   &.opened {
     background: var(--black-900);
+    z-index: 2;
   }
 
   .main-navigation {
@@ -288,11 +319,10 @@ SPECIFIED STYLES
     flex-flow: row wrap;
     justify-content: center;
     align-items: center;
-    font-size: var(--step--1);
+    font-size: var(--step-1);
 
     ul {
-      // using all caps MIN because SASS
-      width: MIN(600px, 100%);
+      width: MIN(600px, 100%); // using all caps MIN because SASS
       justify-content: space-between;
       margin-block: {
         start: 1em;
@@ -302,9 +332,11 @@ SPECIFIED STYLES
       li {
         a {
           color: var(--black-50);
+          text-decoration: none;
 
           &:hover {
             color: var(--bright);
+            text-decoration: underline;
           }
         }
       }
@@ -348,6 +380,8 @@ SPECIFIED STYLES
       padding-block-start: 1em;
 
       .main-navigation {
+        font-size: var(--step--1);
+
         ul {
           display: inline-flex;
         }
@@ -369,53 +403,48 @@ SPECIFIED STYLES
   }
 }
 
-.page-wrap {
-  display: grid;
-  grid-template: {
-    columns: minmax(10px, 1fr) minmax(10px, 3fr);
-    rows: 1fr;
+/* =============
+HOMEPAGE STYLES
+============= */
+
+.homepage {
+  .container {
+    display: grid;
+    gap: MIN(3em, 10vh);
+    margin-block-end: MIN(3em, 10vh);
   }
 
-  @media (max-width: 1074px) {
-    grid-template: {
-      columns: 100%;
-      rows: auto;
-    }
-    > * {
-      grid-column: 1 / -1 !important;
-      grid-row: auto !important;
-    }
-  }
-
-  .page-sidebar {
-    grid-column: 1 / 2;
-    grid-row: 1 / 2;
+  #voted {
     font-size: var(--step--1);
-    background-color: var(--black-50);
-    background-clip: content-box;
-    color: var(--black-900);
-    mix-blend-mode: color-dodge;
+    // background-clip: content-box;
+    // mix-blend-mode: color-dodge;
     padding-block: {
       start: 2em;
       end: 2em;
     }
 
-    .wrapper {
-      display: grid;
-      gap: var(--gap);
+    h2 {
+      font-size: var(--step-2);
+    }
+
+    p {
+      max-width: 50ch;
+      margin-inline: {
+        start: auto;
+        end: auto;
+      }
     }
 
     .window {
       border-radius: 50%;
-      // all caps MIN because SASS
-      width: MIN(300px, 100%);
+      width: MIN(300px, 100%); // all caps MIN because SASS
       margin: auto;
-      mix-blend-mode: difference;
+      // mix-blend-mode: difference;
+      box-shadow: var(--black-200) 0px 0px 10px 0px;
     }
   }
 
-  .page-main {
-    grid-column: 2 / 3;
+  #main {
     display: grid;
     gap: var(--gap);
   }
@@ -439,6 +468,7 @@ SPECIFIED STYLES
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    font-size: var(--step--1);
 
     &:nth-child(2) {
       background: var(--black-700);
@@ -451,33 +481,49 @@ SPECIFIED STYLES
 }
 
 .team-portraits {
-  --gap: 3rem;
   justify-items: center;
   margin-block-end: 2em;
 
   figure {
     margin: 0;
     max-width: 200px;
-    mix-blend-mode: multiply;
+    // mix-blend-mode: multiply;
   }
 }
 
+/* =============
+FOOTER STYLES
+============= */
 .footer {
-  background: var(--black-600);
-  position: relative;
-  overflow: hidden;
-  padding: {
-    top: 2vw;
-    bottom: 4vw;
-  }
+  background: var(--black-100);
+  color: var(--black-900);
+  margin-block-start: auto;
 
   h2 {
-    font-size: 24px;
+    font-size: var(--step-1);
   }
 
-  .content {
+  .wrapper {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     z-index: 1;
-    --gap: 2rem;
+    padding-block: {
+      start: 1em;
+      end: 1em;
+    }
+
+    &::before {
+      content: "";
+      width: 100%;
+      height: 100%;
+      background-image: url("/img/wall2.png");
+      background-repeat: no-repeat;
+      background-position: top right;
+      position: absolute;
+      top: 0;
+      z-index: -1;
+    }
   }
 
   address {
@@ -491,17 +537,37 @@ SPECIFIED STYLES
   }
 }
 
-.siteLinks {
+.footer-links {
+  margin: 0;
+
   li {
-    list-style: none;
+    a {
+      color: var(--blue);
+
+      &:hover {
+        color: var(--red);
+      }
+    }
   }
 }
 
-.overlay {
-  position: absolute;
-  top: 0;
-  right: 0;
-  max-width: 360px;
+/* =============
+OTHER STYLES
+============= */
+
+.services-page {
+  background: center/cover no-repeat url("/img/rob.jpg");
+
+  main {
+    padding-block: {
+      start: 5vh;
+      end: 5vh;
+    }
+
+    p {
+      max-width: 45ch;
+    }
+  }
 }
 
 .listWrapper {
