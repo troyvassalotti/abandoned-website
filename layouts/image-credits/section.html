@@ -1,12 +1,12 @@
 {{ define "content" }}
-<main class="grid place-center">
+<main class="grid place-center padded-layout">
   <header class="wrapper center" data-constrain="most">
     <h1>{{ .Title }}</h1>
     <p>{{ .Params.description }}</p>
   </header>
-  {{ range .Site.Data.images.credits.photographers }}
-  <article class="full flex-center col">
-    <div class="wrapper grid credits" data-constrain="more">
+  <div class="wrapper" data-constrain="more">
+    {{ range .Site.Data.images.credits.photographers }}
+    <article class="grid credits">
       <section>
         <h2>Photographer: {{ .name }}</h2>
         <p><a href="{{ .profile }}" target="_blank" rel="noopener">Unsplash Profile</a></p>
@@ -17,8 +17,8 @@
           <figcaption><a href="{{ .img }}" target="_blank" rel="noopener" class="italic">View on Unsplash</a></figcaption>
         </figure>
       </section>
-    </div>
-  </article>
-  {{ end }}
+    </article>
+    {{ end }}
+  </div>
 </main>
 {{ end }}

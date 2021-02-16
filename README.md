@@ -25,5 +25,4 @@ Honestly, the hardest parts became the following:
 ### TODO
 1. Change the setTimeout function in main.js to not rely on the css animation duration. Maybe make the animation itself in JS so you can perform the same action on animation finish.
 2. Read up on the Hugo docs to see if there's a better way to display all the regular pages in the sidebar of each article.
-3. All the animations.
-4. The image credits page.
+3. Add more animations.

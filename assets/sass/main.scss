@@ -75,6 +75,10 @@ a {
   &:hover {
     color: var(--black-50);
   }
+
+  &:focus {
+    outline: 2px dashed var(--black-50);
+  }
 }
 
 h1,
@@ -271,9 +275,31 @@ COMPOSITION STYLES
     }
   }
 }
+
+.padded-layout {
+  padding-block: {
+    start: MAX(5vh, 62px);
+    end: 5vh;
+  }
+}
+
+.team-portraits {
+  figure {
+    margin: 0;
+  }
+}
 /* =============
 HEADER STYLES
 ============= */
+@keyframes openmenu {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
 #header {
   margin-block: {
     start: 0;
@@ -282,15 +308,14 @@ HEADER STYLES
 }
 
 .site-header {
-  position: absolute;
-  top: 0;
-  left: 0;
+  --timing: 600ms;
+  --function: cubic-bezier(0.4, 0, 0.2, 1);
   width: 100%;
-  height: 100%;
+  height: 0;
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  z-index: 2;
+  transition: height var(--timing) var(--function);
 
   button {
     position: absolute;
@@ -304,13 +329,60 @@ HEADER STYLES
     display: block;
 
     svg {
-      stroke: var(--black-50);
+      .line {
+        fill: none;
+        stroke: var(--black-50);
+        stroke-width: 6;
+        transition: stroke-dasharray var(--timing) var(--function),
+          stroke-dashoffset var(--timing) var(--function);
+      }
+
+      .line1 {
+        stroke-dasharray: 60 207;
+        stroke-width: 6;
+      }
+
+      .line2 {
+        stroke-dasharray: 60 60;
+        stroke-width: 6;
+      }
+
+      .line3 {
+        stroke-dasharray: 60 207;
+        stroke-width: 6;
+      }
     }
   }
 
   &.opened {
     background: var(--black-900);
     z-index: 2;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    animation-name: openmenu;
+    animation-duration: var(--timing);
+    animation-fill-mode: both;
+    animation-timing-function: ease-in-out;
+
+    .line1 {
+      stroke-dasharray: 90 207;
+      stroke-dashoffset: -134;
+      stroke-width: 6;
+    }
+
+    .line2 {
+      stroke-dasharray: 1 60;
+      stroke-dashoffset: -30;
+      stroke-width: 6;
+    }
+
+    .line3 {
+      stroke-dasharray: 90 207;
+      stroke-dashoffset: -134;
+      stroke-width: 6;
+    }
   }
 
   .main-navigation {
@@ -346,43 +418,23 @@ HEADER STYLES
       display: flex;
       justify-content: center;
     }
-
-    @media (min-width: 890px) {
-      form {
-        margin-inline-start: auto;
-      }
-    }
-  }
-}
-
-@media (min-width: 700px) {
-  .site-header {
-    position: static;
-    display: block;
-    padding-block-start: 1em;
-
-    .main-navigation {
-      font-size: var(--step--1);
-      display: flex;
-      flex-flow: row wrap;
-      justify-content: center;
-      align-items: center;
-
-      ul {
-        display: inline-flex;
-        justify-content: space-between;
-      }
-    }
-
-    button {
-      display: none;
-    }
   }
 }
 
 /* =============
 HOMEPAGE STYLES
 ============= */
+@keyframes overlayimage {
+  0%,
+  10%,
+  100% {
+    background: transparent;
+  }
+
+  5% {
+    background: crimson;
+  }
+}
 
 .homepage {
   .container {
@@ -393,8 +445,6 @@ HOMEPAGE STYLES
 
   #voted {
     font-size: var(--step--1);
-    // background-clip: content-box;
-    // mix-blend-mode: color-dodge;
     padding-block: {
       start: 2em;
       end: 2em;
@@ -412,12 +462,42 @@ HOMEPAGE STYLES
       }
     }
 
-    .window {
-      border-radius: 50%;
-      width: MIN(300px, 100%); // all caps MIN because SASS
-      margin: auto;
-      // mix-blend-mode: difference;
-      box-shadow: var(--black-200) 0px 0px 10px 0px;
+    .view {
+      position: relative;
+      display: flex;
+      justify-content: center;
+
+      &::before {
+        position: absolute;
+        top: 0;
+        left: 25%;
+        width: MIN(300px, 100%);
+        height: 100%;
+        content: "";
+        border-radius: 50%;
+        mix-blend-mode: color-dodge;
+        animation-name: overlayimage;
+        animation-duration: 10s;
+        animation-fill-mode: both;
+        animation-iteration-count: 5;
+        animation-delay: 10s;
+      }
+
+      .window {
+        border-radius: 50%;
+        width: MIN(300px, 100%); // all caps MIN because SASS
+        margin: auto;
+        box-shadow: var(--black-200) 0px 0px 10px 0px;
+      }
+    }
+
+    .team-portraits {
+      justify-items: center;
+      margin-block-end: 2em;
+
+      figure {
+        max-width: 200px;
+      }
     }
   }
 
@@ -454,17 +534,6 @@ HOMEPAGE STYLES
     &:nth-child(3) {
       background: var(--black-800);
     }
-  }
-}
-
-.team-portraits {
-  justify-items: center;
-  margin-block-end: 2em;
-
-  figure {
-    margin: 0;
-    max-width: 200px;
-    // mix-blend-mode: multiply;
   }
 }
 
@@ -535,11 +604,6 @@ SERVICES PAGE STYLES
   background: center/cover no-repeat url("/img/rob.jpg");
 
   main {
-    padding-block: {
-      start: 5vh;
-      end: 5vh;
-    }
-
     p {
       max-width: 45ch;
     }
@@ -550,13 +614,6 @@ SERVICES PAGE STYLES
 NEWS PAGE STYLES
 ============= */
 .news-page {
-  main {
-    padding-block: {
-      start: 5vh;
-      end: 5vh;
-    }
-  }
-
   #list {
     --gap: 2em;
   }
@@ -573,10 +630,6 @@ NEWS PAGE STYLES
   margin-inline: {
     start: auto;
     end: auto;
-  }
-  padding-block: {
-    start: 5vh;
-    end: 5vh;
   }
 
   header {
@@ -612,34 +665,16 @@ NEWS PAGE STYLES
   }
 }
 
-@media (max-width: 1074px) {
-  .classic-wrap {
-    grid-template: {
-      columns: 100%;
-      rows: auto;
-    }
-
-    > * {
-      grid-column: 1 / -1 !important;
-      grid-row: auto !important;
-    }
-
-    aside {
-      &.article-sidebar {
-        .sidebar-links {
-          display: inline-flex;
-          justify-content: space-between;
-          width: 100%;
-        }
-      }
-    }
-  }
-}
-
 .credits {
+  grid-template-columns: repeat(auto-fit, minmax(305px, 1fr));
+  margin-block: {
+    start: 1em;
+    end: 1em;
+  }
+
   figure {
     margin: 0 auto;
-    max-width: 500px;
   }
 }
-// @import "_media";
+
+@import "_media";

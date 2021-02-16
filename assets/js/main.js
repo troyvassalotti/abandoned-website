@@ -28,3 +28,10 @@ searchbar.addEventListener('click', e => {
   searchbar.setAttribute('class', 'oops');
   setTimeout(removeSearchbar, 2000);
 }, {once: true});
+
+searchbar.addEventListener('keydown', e => {
+  e.preventDefault();
+  searchbar.setAttribute('disabled', 'true');
+  searchbar.setAttribute('class', 'oops');
+  setTimeout(removeSearchbar, 2000);
+}, {once: true});
