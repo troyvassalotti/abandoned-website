@@ -21,3 +21,8 @@ Honestly, the hardest parts became the following:
 3. Setting up the 404 page to work within the baseof.html template while still having its own special treatment (inline `<style>` blocks and `noindex` directive).
 
 ## Enjoy.
+
+### TODO
+1. Change the setTimeout function in main.js to not rely on the css animation duration. Maybe make the animation itself in JS so you can perform the same action on animation finish.
+2. Read up on the Hugo docs to see if there's a better way to display all the regular pages in the sidebar of each article.
+3. Add more animations.

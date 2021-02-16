@@ -1,14 +1,28 @@
-{{ define "main" }}
-<main class="wrapper article" data-constrain="more">
-  <header>
-    <h1>{{ .Title }}</h1>
-    <aside class="meta">
-      <p id="date" class="italic">{{ .Date.Format "Mon Jan 2, 2006" }}</p>
-      <p id="wordcount" class="italic">{{ .WordCount }} Words</p>
-    </aside>
-  </header>
-  <article class="wrapper">
-    {{ .Content }}
-  </article>
-</main>
+{{ define "content" }}
+<div class="classic-wrap">
+  <main class="article padded-layout">
+    <header>
+      <h1>{{ .Title }}</h1>
+      <div class="meta">
+        <p id="date" class="italic">{{ .Date.Format "Mon Jan 2, 2006" }}</p>
+        <p id="wordcount" class="italic">{{ .WordCount }} Words</p>
+      </div>
+    </header>
+    <article class="wrapper">
+      {{ .Content }}
+    </article>
+  </main>
+  <aside class="article-sidebar">
+    <div class="wrapper">
+      <h2>More Articles</h2>
+      <nav class="sidebar-nav">
+        <ul class="sidebar-links">
+          {{ range .Site.RegularPages }}
+          <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+          {{ end }}
+        </ul>
+      </nav>
+    </div>
+  </aside>
+</div>
 {{ end }}

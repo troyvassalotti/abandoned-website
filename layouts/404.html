@@ -1,15 +1,23 @@
 	{{ define "robots" }}
 	<meta name="robots" content="noindex">
 	{{ end }}
+
 	{{ define "inlineStyle" }}
 	<style>
 		html {
 			background: center/cover no-repeat url("/img/liam.jpg");
 		}
 
+		.site-header svg {
+			stroke: var(--black-900);
+		}
+
 		.subtitle {
 			font-size: calc(23px + (36 - 23) * ((100vw - 320px) / (1920 - 320)));
-			margin: .25em auto;
+			margin-block-start: .25em;
+			margin-block-end: .25em;
+			margin-inline-start: auto;
+			margin-inline-end: auto;
 		}
 
 		.message {
@@ -20,12 +28,11 @@
 		}
 	</style>
 	{{ end }}
-	{{ define "main" }}
-	<main class="flex-center col errorPage">
-		<section class="flex-center col message wrapper center" data-constrain="more">
-			<h1>Hmm...</h1>
-			<p class="subtitle italic">Something must've gone wrong!</p>
-			<p>We’re hard at work fixing whatever the problem is that got you here, don’t you worry!</p>
-		</section>
+
+	{{ define "content" }}
+	<main class="error-page message center marginalize flex-center col">
+		<h1>Hmm...</h1>
+		<p class="subtitle italic">Something must've gone wrong!</p>
+		<p>We’re hard at work fixing whatever the problem is that got you here, don’t you worry!</p>
 	</main>
 	{{ end }}
