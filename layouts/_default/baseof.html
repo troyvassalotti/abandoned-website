@@ -24,7 +24,7 @@
     {{ $style := resources.Get "sass/main.scss" | resources.ToCSS $options }}
     <link rel="stylesheet" href="{{ $style.Permalink }}">
     <link rel="shortcut icon" href="/img/favicon.ico" />
-    <link rel="canonical" href="https://www.abandoned.website{{ .Page.RelPermalink }}">
+    <link rel="canonical" href="https://abandoned.website{{ .Page.RelPermalink }}">
 
     {{ block "inlineStyle" . }}
     {{/* define the inline style block within the template if needed */}}
