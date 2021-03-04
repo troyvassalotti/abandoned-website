@@ -20,7 +20,7 @@
 # Redirect from the default Netlify site to my custom domain
 [[redirects]]
   from = "https://abandoned-website.netlify.app/*"
-  to = "https://www.abandoned.website/:splat"
+  to = "https://abandoned.website/:splat"
   status = 301
   force = true
 
